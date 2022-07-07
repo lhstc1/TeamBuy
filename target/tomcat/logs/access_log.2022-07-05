@@ -1,0 +1,14 @@
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:04 +0800] "GET /webpage/Login.html HTTP/1.1" 304 - http-bio-80-exec-1 67
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:13 +0800] "POST /users/getByUserName HTTP/1.1" 200 97 http-bio-80-exec-3 1150
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:13 +0800] "GET /webpage/Loginin.html HTTP/1.1" 304 - http-bio-80-exec-4 7
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:13 +0800] "GET /js/xDataGrid.js HTTP/1.1" 304 - http-bio-80-exec-5 5
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:14 +0800] "GET /activities?search=&order=asc&_=1657001713961 HTTP/1.1" 200 1015 http-bio-80-exec-6 30
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:21 +0800] "GET /webpage/MyTeam.html HTTP/1.1" 304 - http-bio-80-exec-7 3
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:21 +0800] "GET /js/MyTeamDataGrid.js HTTP/1.1" 304 - http-bio-80-exec-8 6
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:21 +0800] "GET /joiners?search=&order=asc&_=1657001721719 HTTP/1.1" 200 390 http-bio-80-exec-9 13
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:24 +0800] "GET /activities?search=&order=asc&_=1657001723948 HTTP/1.1" 200 1015 http-bio-80-exec-10 15
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:25 +0800] "GET /webpage/TeamActivity.html HTTP/1.1" 304 - http-bio-80-exec-10 5
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:33 +0800] "POST /users/getByUserName HTTP/1.1" 200 97 http-bio-80-exec-10 4
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:33 +0800] "GET /webpage/Member.html HTTP/1.1" 304 - http-bio-80-exec-10 4
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:33 +0800] "GET /js/TeamDataGrid.js HTTP/1.1" 304 - http-bio-80-exec-10 3
+0:0:0:0:0:0:0:1 - - [05/Jul/2022:14:15:33 +0800] "GET /activities?search=&order=asc&_=1657001733412 HTTP/1.1" 200 1015 http-bio-80-exec-10 20

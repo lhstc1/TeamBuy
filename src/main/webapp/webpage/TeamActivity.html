@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="app.css" rel="stylesheet">
+    <!-- @*5、页面Js文件的引用*@ -->
+    <script src="./js/party.js"></script>
+    <!--@*5、导出js-->
+    <script type="text/javascript" src="lib/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>
+    <script type="text/javascript" src="lib/js/tableExport.min.js"></script>
+    <title>活动页面</title>
+</head>
+<body style = "background-color: #c8d8ef" id = "party">
+<div class = "text-center" style = "font-size: 40px;">
+    <br>
+    <p>团队活动</p>
+</div>
+<div class = "container">
+    <div class = row>
+        <div class = "col-md-2" style = "font-size: 20px;">
+            <p>请输入您的团队名</p>
+        </div>
+        <div class = "col-md-2">
+            <input type = "text" class = "form-control">
+        </div>
+        <div class = "col-md-1">
+            <button type = "button" class = "btn btn-default" id = "search_button">查询</button>
+        </div>
+        <div class = "col-md-2">
+            <button type = "button" class = "btn btn-info">团员名单</button>
+        </div>
+        <div class = "col-md-2">
+            <button type = "button" class = "btn btn-danger">缴费打印</button>
+        </div>
+        <div class = "col-md-2">
+            <button type = "button" class = "btn btn-success" data-toggle="modal" data-target="#myModal">结束活动</button>
+        </div>
+        <div class = "col-md-1">
+            <button type = "button" class = "btn btn-warning" onclick="window.location.href='AdminHome.html'">关闭</button>
+        </div>
+    </div>
+    <br>
+    <div style="height:2px;width:1139px;border-top:1px solid #272727;float:left;margin-top:10px;"></div>
+    <br>
+    <table class = "table table-bordered">
+        <tbody>
+        <tr>
+            <th>活动项目</th>
+            <th>项目费用</th>
+            <th>分摊费用</th>
+        </tr>
+        </tbody>
+    </table>
+    <!-- bootstrap table自动渲染区域-->
+    <table id="tb_departments"></table>
+</div>
+
+<div class = "modal fade" id = "myModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden = "true">
+    <div class = "modal-dialog">
+        <div class = "modal-content">
+            <div class = "modal-header">
+                <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">x</button>
+                <h3 class = "modal-title" id = "myModalLable">团长致谢信</h3>
+            </div>
+            <div class = "modal-body">
+                <p>首先感谢大家参加我们的团队</p>
+                <p>很开心和大家一起游玩这么多项目</p>
+            </div>
+            <div class = "modal-footer">
+                <button type = "button" class = "btn btn-default" data-dismiss = "modal" onclick="window.location.href='AdminHome.html'">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

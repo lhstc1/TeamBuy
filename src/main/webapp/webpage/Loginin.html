@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>团长界面</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.0/dist/bootstrap-table.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+
+    <script src="https://unpkg.com/bootstrap-table@1.20.0/dist/bootstrap-table.min.js"></script>
+
+    <script src="https://unpkg.com/bootstrap-table@1.20.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/extensions/print/bootstrap-table-print.min.js"></script>
+
+    <script src="../js/xDataGrid.js"></script>
+    <script src="../js/axios-0.18.0.js"></script>
+    <script src="../js/layer/layer.js"></script>
+</head>
+
+<style>
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+    }
+
+    .ch {
+        font-family: 微软雅黑;
+        text-align: justify;
+        text-align-last: justify;
+    }
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: dimgray;
+    }
+
+    #look {
+        width: 1300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 700px;
+        background-color: lightsteelblue;
+        box-shadow: 7px 7px 17px rgba(52, 56, 66, 0.5);
+        border-radius: 30px 90px 30px 90px;
+    }
+
+    .button {
+        border-color: cornsilk;
+        background-color: rgba(100, 149, 237, .7);
+        color: aliceblue;
+        border-style: hidden;
+        border-radius: 5px;
+        width: 100px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .btnstyle {
+        border-color: cornsilk;
+        background-color: rgba(100, 149, 237, .7);
+        color: aliceblue;
+        border-style: hidden;
+        border-radius: 5px;
+        width: 110px;
+        height: 40px;
+        font-size: 16px;
+    }
+</style>
+<body>
+<div class="main-wrapper" id="look">
+    <div class="container px-3 px-lg-5">
+        <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow">
+            <div class="main">
+                <h1>团长系统</h1>
+            </div>
+            <div id="toolbar" class="btn-group">
+                <div>
+                    <button type="button" class="btn btn-secondary button" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">发布活动
+                    </button>
+                    <button type="button" class="btn btn-secondary button"
+                            onclick="window.location.href='MyTeam.html'">我的团队
+                    </button>
+                    <button class="btn btn-secondary button"
+                            type="button" onclick="window.location.href='TeamActivity.html'">团队活动
+                    </button>
+                    <button class="btn btn-secondary btnstyle"
+                            type="button" onclick="window.location.href='Login.html'">返回上一页
+                    </button>
+                </div>
+            </div>
+
+            <!-- bootstrap table自动渲染区域-->
+            <table id="tb_departments" data-show-print="true"></table>
+
+            <!-- Modal -->
+            <div class="modal fade" id="updateModal" tabindex="-1"
+                 aria-labelledby="updateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">修改活动</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body px-3 px-lg-5" style="height: 100%;">
+                            <form>
+                                <table class="table table-borderless align-middle">
+                                    <tr>
+                                        <td class="ch fs-5">活 动 id</td>
+                                        <td><input class="form-control" id="id"
+                                                   type="text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">活 动 名 称</td>
+                                        <td><input class="form-control" id="update_name"
+                                                   type="text" placeholder="请输入活动名称"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">活 动 时 间</td>
+                                        <td><input class="form-control" id="update_date"
+                                                   type="text" placeholder="请输入活动时间"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">时 长</td>
+                                        <td><input class="form-control" id="update_span"
+                                                   type="text" placeholder="请输入活动时长"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">活 动 介 绍</td>
+                                        <td><input class="form-control" id="update_introduction"
+                                                   type="text" placeholder="请输入活动内容"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">活 动 费 用</td>
+                                        <td><input class="form-control" id="update_fee"
+                                                   type="text" placeholder="请输入活动费用"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">团 长</td>
+                                        <td><input class="form-control" id="update_leader"
+                                                   type="text" placeholder="请输入团长"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">团 费</td>
+                                        <td><input class="form-control" id="update_tfee"
+                                                   type="text" placeholder="请输入团费"></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary button"
+                                    data-bs-dismiss="modal">关闭
+                            </button>
+                            <button type="button" class="btn btn-primary button"
+                                    onclick="doUpdate()">修改
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">创建团队</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body px-3 px-lg-5">
+                            <form>
+                                <table class="table table-borderless align-middle">
+                                    <tr>
+                                        <td class="ch fs-5">活 动 名 称</td>
+                                        <td><input class="form-control" id="name"
+                                                   type="text" placeholder="请输入活动名称"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">活 动 时 间</td>
+                                        <td><input class="form-control" id="date"
+                                                   type="text" placeholder="请输入活动时间"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">时 长</td>
+                                        <td><input class="form-control" id="span"
+                                                   type="text" placeholder="请输入活动时长"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">活 动 介 绍</td>
+                                        <td><input class="form-control" id="introduction"
+                                                   type="text" placeholder="请输入活动内容"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">活 动 费 用</td>
+                                        <td><input class="form-control" id="fee"
+                                                   type="text" placeholder="请输入活动费用"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">团 长</td>
+                                        <td><input class="form-control" id="leader"
+                                                   type="text" placeholder="请输入团长"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ch fs-5">团 费</td>
+                                        <td><input class="form-control" id="tfee"
+                                                   type="text" placeholder="请输入团费"></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary button"
+                                    data-bs-dismiss="modal">关闭
+                            </button>
+                            <button type="button" class="btn btn-primary button"
+                                    onclick="doAdd()">创建
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+</div>
+</div>
+</body>
+<script>
+    function doUpdate() {
+        var id = $("#id");
+        var name = $("#update_name");
+        var date = $("#update_date");
+        var span = $("#update_span");
+        var fee = $("#update_fee");
+        var introduction = $("#update_introduction");
+        var leader = $("#update_leader");
+        var tfee = $("#update_tfee");
+        var da = {
+            "id": id.val(),
+            "name": name.val(),
+            "date": date.val(),
+            "span": span.val(),
+            "fee": fee.val(),
+            "introduction": introduction.val(),
+            "leader": leader.val(),
+            "tfee": tfee.val()
+        };
+
+        //发送ajax请求
+        axios.put("/activities", da).then((res) => {
+            //如果操作成功，关闭弹层，显示数据
+            if (res.data.code == 20031) {
+                layer.msg("修改成功！", {time: 1000, icon: 6, shift: 6});
+            } else if (res.data.code == 20030) {
+                layer.msg("修改失败！", {time: 1000, icon: 5, shift: 6});
+            } else {
+                alert(res.data.msg);
+            }
+        }).finally(() => {
+            $("#tb_departments").bootstrapTable('refresh');
+        });
+    }
+
+    function doAdd() {
+        var name = $("#name");
+        var date = $("#date");
+        var span = $("#span");
+        var fee = $("#fee");
+        var introduction = $("#introduction");
+        var leader = $("#leader");
+        var tfee = $("#tfee");
+
+        var da = {
+            "name": name.val(),
+            "date": date.val(),
+            "span": span.val(),
+            "fee": fee.val(),
+            "introduction" : introduction.val(),
+            "leader": leader.val(),
+            "tfee": tfee.val()
+        };
+
+        //发送ajax请求
+        axios.post("/activities",da).then((res)=>{
+            //如果操作成功，关闭弹层，显示数据
+            if(res.data.code == 20011){
+                layer.msg("添加成功！", {time: 1000, icon: 6, shift: 6});
+                $('#exampleModal').modal('hide');
+            }else if(res.data.code == 20010){
+                layer.msg("添加失败！", {time: 1000, icon: 5, shift: 6});
+            }else{
+                layer.msg(res.data.msg, {time: 1000, icon: 5, shift: 6});
+            }
+        }).finally(()=>{
+            $('#tb_departments').bootstrapTable('refresh');
+        });
+    }
+</script>
+</html>

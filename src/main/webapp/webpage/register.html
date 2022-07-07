@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- 必须的 meta 标签 -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>注册界面</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.0/dist/bootstrap-table.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+                crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.20.0/dist/bootstrap-table.min.js"></script>
+
+        <script src="../js/axios-0.18.0.js"></script>
+        <script src="../js/layer/layer.js"></script>
+    </head>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: dimgray;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;
+        }
+
+        .button {
+            border-color: cornsilk;
+            background-color: rgba(100, 149, 237, .7);
+            color: aliceblue;
+            border-style: hidden;
+            border-radius: 5px;
+            width: 100px;
+            height: 40px;
+            font-size: 16px;
+        }
+
+        .ch {
+            font-family: 微软雅黑;
+            text-align: justify;
+            text-align-last: justify;
+        }
+
+        #look {
+            width: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 700px;
+            background-color: lightsteelblue;
+            box-shadow: 7px 7px 17px rgba(52, 56, 66, 0.5);
+            border-radius: 250px;
+        }
+    </style>
+    <body>
+        <div id="look">
+            <div class="main-wrapper">
+                <div class="container px-3 px-lg-5">
+                    <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5">
+                        <div class="main">
+                            <h1 class="text-center">用户注册</h1>
+                            <div class="row pt-4">
+                                <div class="col mx-4">
+                                    <h4>拼团--团队活动AA制</h4>
+                                    拼团通过网络将零散的消费者组织起来，以团体优势与销售者谈判，获得比单个消费者优越的购买条件。
+                                    <br>
+                                    <br>
+                                </div>
+                                <form>
+                                    <table class="table table-borderless align-middle">
+                                        <tr>
+                                            <td class="ch fs-5">用 户 名</td>
+                                            <td><input class="form-control" type="text" id="username"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ch fs-5">密 码</td>
+                                            <td><input class="form-control" type="password" id="password"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <div style="text-align: center;margin-top: 30px;">
+                                                    <button class="btn btn-primary btn-sm ch fs-5 button"
+                                                            type="button" onclick="doRegister()">用户注册
+                                                    </button>
+                                                    <br>
+                                                    <p>已有账号？<a href = "Login.html">点击登录</a></p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function doRegister() {
+                var username = $("#username");
+                var password = $("#password");
+                var da = {
+                    "username": username.val(),
+                    "password": password.val()
+                };
+                $.ajax({
+                    type: "post",
+                    data: JSON.stringify(da),
+                    url: "/users",
+                    dataType: "json",
+                    contentType: 'application/json;charset=utf-8',
+                    success: function () {
+                        layer.msg("注册成功！", {time: 1000, icon: 6, shift: 6});
+                        username.val("");
+                        password.val("");
+                        username.focus();
+                        window.location.href = 'Login.html';
+                    },
+                    complete: function () {
+                        layer.msg("注册成功！", {time: 1000, icon: 6, shift: 6});
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>

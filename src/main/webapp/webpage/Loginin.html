@@ -70,17 +70,6 @@
         height: 40px;
         font-size: 16px;
     }
-
-    .btnstyle {
-        border-color: cornsilk;
-        background-color: rgba(100, 149, 237, .7);
-        color: aliceblue;
-        border-style: hidden;
-        border-radius: 5px;
-        width: 110px;
-        height: 40px;
-        font-size: 16px;
-    }
 </style>
 <body>
 <div class="main-wrapper" id="look">
@@ -100,8 +89,8 @@
                     <button class="btn btn-secondary button"
                             type="button" onclick="window.location.href='TeamActivity.html'">团队活动
                     </button>
-                    <button class="btn btn-secondary btnstyle"
-                            type="button" onclick="window.location.href='Login.html'">返回上一页
+                    <button class="btn btn-secondary button"
+                            type="button" onclick="window.location.href='Login.html'">退出登录
                     </button>
                 </div>
             </div>
@@ -135,7 +124,7 @@
                                     <tr>
                                         <td class="ch fs-5">活 动 时 间</td>
                                         <td><input class="form-control" id="update_date"
-                                                   type="text" placeholder="请输入活动时间"></td>
+                                                   type="date" placeholder="请输入活动时间"></td>
                                     </tr>
                                     <tr>
                                         <td class="ch fs-5">时 长</td>
@@ -198,7 +187,7 @@
                                     <tr>
                                         <td class="ch fs-5">活 动 时 间</td>
                                         <td><input class="form-control" id="date"
-                                                   type="text" placeholder="请输入活动时间"></td>
+                                                   type="date" placeholder="请输入活动时间"></td>
                                     </tr>
                                     <tr>
                                         <td class="ch fs-5">时 长</td>
@@ -271,6 +260,7 @@
             //如果操作成功，关闭弹层，显示数据
             if (res.data.code == 20031) {
                 layer.msg("修改成功！", {time: 1000, icon: 6, shift: 6});
+                $('#updateModal').modal('hide');
             } else if (res.data.code == 20030) {
                 layer.msg("修改失败！", {time: 1000, icon: 5, shift: 6});
             } else {

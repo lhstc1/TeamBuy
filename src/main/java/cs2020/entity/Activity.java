@@ -1,9 +1,14 @@
 package cs2020.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class Activity {
     private Integer id;
     private String name;
-    private String date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date date;
     private String span;
     private double fee;
     private String introduction;
@@ -26,11 +31,11 @@ public class Activity {
         this.name = name;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -73,4 +78,5 @@ public class Activity {
     public void setTfee(double tfee) {
         this.tfee = tfee;
     }
+
 }

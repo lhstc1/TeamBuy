@@ -92,12 +92,9 @@
             </div>
             <div id="toolbar" class="btn-group">
                 <div>
-                    <button type="button" class="btn btn-secondary button" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">发布活动
-                    </button>
-                    <button class="btn btn-secondary button" onclick="getNum()">均摊费用</button>
+                    <button class="btn btn-secondary button" onclick="getFee()">均摊费用</button>
                     <button class="btn btn-secondary btnstyle"
-                            type="button" onclick="window.location.href='AdminHome.html'">返回上一页
+                            type="button" onclick="window.location.href='Loginin.html'">返回上一页
                     </button>
                 </div>
             </div>
@@ -105,118 +102,42 @@
             <!-- bootstrap table自动渲染区域-->
             <table id="tb_departments" data-show-print="true"></table>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1"
-                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">创建团队</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body px-3 px-lg-5">
-                            <form>
-                                <table class="table table-borderless align-middle">
-                                    <tr>
-                                        <td class="ch fs-5">活 动 名 称</td>
-                                        <td><input class="form-control" id="name"
-                                                   type="text" placeholder="请输入活动名称"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ch fs-5">活 动 时 间</td>
-                                        <td><input class="form-control" id="date"
-                                                   type="text" placeholder="请输入活动时间"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ch fs-5">时 长</td>
-                                        <td><input class="form-control" id="span"
-                                                   type="text" placeholder="请输入活动时长"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ch fs-5">活 动 介 绍</td>
-                                        <td><input class="form-control" id="introduction"
-                                                   type="text" placeholder="请输入活动内容"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ch fs-5">活 动 费 用</td>
-                                        <td><input class="form-control" id="fee"
-                                                   type="text" placeholder="请输入活动费用"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ch fs-5">团 长</td>
-                                        <td><input class="form-control" id="leader"
-                                                   type="text" placeholder="请输入团长"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ch fs-5">团 费</td>
-                                        <td><input class="form-control" id="tfee"
-                                                   type="text" placeholder="请输入团费"></td>
-                                    </tr>
-                                </table>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary button"
-                                    data-bs-dismiss="modal">关闭
-                            </button>
-                            <button type="button" class="btn btn-primary button"
-                                    onclick="doAdd()">创建
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </article>
     </div>
 </div>
 </div>
 </body>
 <script>
-    function getNum(){
-        var all = $("#tb_departments").bootstrapTable('getOptions').totalRows;
+    function getFee(){
         var row = $("#tb_departments").bootstrapTable('getSelections');
-        var fee;
-        for(var i=0;i<row.length;i++){
-            fee=row[i].fee;
-        }
-        fee = fee/all;
-        alert('一共'+all+'人。每个人'+JSON.stringify(fee));
-        $('#tb_departments').bootstrapTable('refresh');
-    }
-    function doAdd() {
-        var name = $("#name");
-        var date = $("#date");
-        var span = $("#span");
-        var fee = $("#fee");
-        var introduction = $("#introduction");
-        var leader = $("#leader");
-        var tfee = $("#tfee");
-
+        var name = row[0].name;
+        var leader = row[0].leader;
+        var fee = row[0].fee;
+        var sum = $("#tb_departments").bootstrapTable('getOptions').totalRows;
+        var pfee = fee/sum;
+        var tfee = row[0].tfee;
         var da = {
-            "name": name.val(),
-            "date": date.val(),
-            "span": span.val(),
-            "fee": fee.val(),
-            "introduction" : introduction.val(),
-            "leader": leader.val(),
-            "tfee": tfee.val()
+            "name": name,
+            "leader": leader,
+            "fee": fee,
+            "sum": sum,
+            "pfee": pfee,
+            "tfee": tfee
         };
-
-        //发送ajax请求
-        axios.post("/activities",da).then((res)=>{
+        axios.post("/team",da).then((res)=>{
             //如果操作成功，关闭弹层，显示数据
             if(res.data.code == 20011){
-                layer.msg("添加成功！", {time: 1000, icon: 6, shift: 6});
-                $('#exampleModal').modal('hide');
+                layer.msg("计算成功！", {time: 1000, icon: 6, shift: 6});
             }else if(res.data.code == 20010){
-                layer.msg("添加失败！", {time: 1000, icon: 5, shift: 6});
+                layer.msg("计算失败！", {time: 1000, icon: 5, shift: 6});
             }else{
                 layer.msg(res.data.msg, {time: 1000, icon: 5, shift: 6});
             }
         }).finally(()=>{
             $('#tb_departments').bootstrapTable('refresh');
         });
+        //alert('一共'+sum+'人。每个人'+pfee+'元');
+        //$('#tb_departments').bootstrapTable('refresh');
     }
 </script>
 </html>

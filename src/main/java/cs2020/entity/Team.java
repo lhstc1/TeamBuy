@@ -2,11 +2,13 @@ package cs2020.entity;
 
 public class Team {
     private Integer id;
-    private String tname;
-    private double tfee;
-    private Integer needs;
-    private Integer been;
+    private String name;
     private String leader;
+    private double fee;
+    private Integer sum;
+    private double pfee;
+    private double tfee;
+    private String elsefee;
 
     public Integer getId() {
         return id;
@@ -16,12 +18,44 @@ public class Team {
         this.id = id;
     }
 
-    public String getTname() {
-        return tname;
+    public String getName() {
+        return name;
     }
 
-    public void setTname(String tname) {
-        this.tname = tname;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLeader() {
+        return leader;
+    }
+
+    public void setLeader(String leader) {
+        this.leader = leader;
+    }
+
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
+    }
+
+    public Integer getSum() {
+        return sum;
+    }
+
+    public void setSum(Integer sum) {
+        this.sum = sum;
+    }
+
+    public double getPfee() {
+        return pfee;
+    }
+
+    public void setPfee(double pfee) {
+        this.pfee = pfee;
     }
 
     public double getTfee() {
@@ -32,27 +66,11 @@ public class Team {
         this.tfee = tfee;
     }
 
-    public Integer getNeeds() {
-        return needs;
+    public String getElsefee() {
+        return elsefee;
     }
 
-    public void setNeeds(Integer needs) {
-        this.needs = needs;
-    }
-
-    public Integer getBeen() {
-        return been;
-    }
-
-    public void setBeen(Integer been) {
-        this.been = been;
-    }
-
-    public String getLeader() {
-        return leader;
-    }
-
-    public void setLeader(String leader) {
-        this.leader = leader;
+    public void setElsefee(String elsefee) {
+        this.elsefee = elsefee;
     }
 }

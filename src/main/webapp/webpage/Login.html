@@ -90,6 +90,9 @@
                                 <tr>
                                     <td colspan="2">
                                         <div style="text-align: center;margin-top: 30px;">
+                                            <!--<button class="btn btn-primary btn-sm ch fs-5 button"
+                                                    type="button" onclick="doLogin()">团长注册
+                                            </button> -->
                                             <button class="btn btn-primary btn-sm ch fs-5 button"
                                                     type="button" onclick="doLeader()">团长登录
                                             </button>
@@ -111,6 +114,28 @@
 </div>
 
 <script>
+    function doLogin() {
+        var leadername = $("#username");
+        var password = $("#password");
+        var da = {
+            "leadername": leadername.val(),
+            "password": password.val()
+        };
+        $.ajax({
+            type: "post",
+            data: JSON.stringify(da),
+            url: "/leader",
+            dataType: "json",
+            contentType: 'application/json;charset=utf-8',
+            success: function () {
+                layer.msg("注册成功！", {time: 1000, icon: 6, shift: 6});
+            },
+            complete: function () {
+                layer.msg("注册成功！", {time: 1000, icon: 6, shift: 6});
+            }
+        });
+    }
+
     function doLeader() {
         var leadername = $("#username");
         var password = $("#password");

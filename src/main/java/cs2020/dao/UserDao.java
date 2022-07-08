@@ -10,4 +10,5 @@ public interface UserDao {
 
     @Select("select * from users where username = #{username}")
     public User getByUserName(String username);
+
 }

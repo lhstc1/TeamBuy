@@ -19,4 +19,12 @@ public class Leader {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Leader() {
+    }
+
+    public Leader(String leadername, String password) {
+        this.leadername = leadername;
+        this.password = password;
+    }
 }

@@ -116,19 +116,19 @@ function ApplyById(row, index) {
     $("#id").val(data_json[index].id);
     $("#id").attr("disabled", "true");		//组件内容禁止修改
     $("#apply_name").val(data_json[index].name);
-    $("#apply_name").removeAttr("disabled", "true");  // 删除禁止修改属性
+    $("#apply_name").attr("disabled", "true");  // 删除禁止修改属性
     $("#apply_date").val(data_json[index].date);
-    $("#apply_date").removeAttr("readonly");
+    $("#apply_date").attr("disabled", "true");
     $("#apply_span").val(data_json[index].span);
-    $("#apply_span").removeAttr("readonly");
+    $("#apply_span").attr("disabled", "true");
     $("#apply_fee").val(data_json[index].fee);
-    $("#apply_fee").removeAttr("readonly");
+    $("#apply_fee").attr("disabled", "true");
     $("#apply_introduction").val(data_json[index].introduction);
-    $("#apply_introduction").removeAttr("readonly");
+    $("#apply_introduction").attr("disabled", "true");
     $("#apply_leader").val(data_json[index].leader);
-    $("#apply_leader").removeAttr("readonly");
+    $("#apply_leader").attr("disabled", "true");
     $("#apply_tfee").val(data_json[index].tfee);
-    $("#apply_tfee").removeAttr("readonly");
+    $("#apply_tfee").attr("disabled", "true");
 
     // $("#updateModalLabel").html("修改部门信息");
 

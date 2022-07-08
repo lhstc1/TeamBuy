@@ -115,6 +115,20 @@
                     "username": username.val(),
                     "password": password.val()
                 };
+                if($.trim(username.val()) == ""){
+                    layer.msg("请填写用户名", {time:1000, icon:5, shift:6}, function () {
+                        username.val("");
+                        username.focus();
+                    });
+                    return false;
+                }
+                if($.trim(password.val()) == ""){
+                    layer.msg("请设置您的密码", {time:1000, icon:5, shift:6}, function () {
+                        password.val("");
+                        password.focus();
+                    });
+                    return false;
+                }
                 $.ajax({
                     type: "post",
                     data: JSON.stringify(da),

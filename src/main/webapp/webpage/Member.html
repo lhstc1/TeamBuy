@@ -91,6 +91,9 @@
             </div>
             <div id="toolbar" class="btn-group">
                 <div>
+                    <button class="btn btn-secondary button"
+                            type="button" onclick="doReturn()">返回主页
+                    </button>
                     <button class="btn btn-secondary btnstyle"
                             type="button" onclick="window.location.href='Home.html'">退出登录
                     </button>
@@ -206,6 +209,15 @@
         }).finally(()=>{
             $("#tb_departments").bootstrapTable('refresh');
         });
+    }
+</script>
+<script type="text/javascript">
+    var url = decodeURI(location.href);
+    var num = url.indexOf("?");
+    var userN = url.substr(num+1);
+    $("#userN").html(userN);
+    function doReturn(){
+        window.location.href = "MemberHome.html?" + userN;
     }
 </script>
 </html>

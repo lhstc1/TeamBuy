@@ -192,7 +192,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary button"
-                                    data-bs-dismiss="modal" onclick="window.location.href='AdminHome.html'">关闭
+                                    data-bs-dismiss="modal" onclick="doReturn()">关闭
                             </button>
                         </div>
                     </div>
@@ -238,6 +238,10 @@
         }).finally(() => {
             $("#tb_departments").bootstrapTable('refresh');
         });
+    }
+
+    function doReturn(){
+        window.location.href = "AdminHome.html?" + "小欣";
     }
 </script>
 </html>

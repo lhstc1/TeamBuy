@@ -90,7 +90,7 @@
                             type="button" onclick="window.location.href='TeamActivity.html'">团队活动
                     </button>
                     <button class="btn btn-secondary button"
-                            type="button" onclick="window.location.href='AdminHome.html'">返回主页
+                            type="button" onclick="doReturn()">返回主页
                     </button>
                 </div>
             </div>
@@ -354,6 +354,10 @@
         }).finally(()=>{
             $('#tb_departments').bootstrapTable('refresh');
         });
+    }
+
+    function doReturn(){
+        window.location.href = "AdminHome.html?" + "小欣";
     }
 </script>
 </html>

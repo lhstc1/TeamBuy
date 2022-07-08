@@ -7,6 +7,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css" rel="stylesheet">
     <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <title>首页</title>
 </head>
 
@@ -17,9 +18,10 @@
                 <a class="navbar-brand">早九晚五工作室——————>给你从未有过的旅游体验</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="Loginin.html"><span class = "glyphicon glyphicon-home"> 团长系统</span></a></li>
+                <li><a href="#" onclick="doL()"><span class = "glyphicon glyphicon-home"> 团长系统</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a><span id="leaderN" class="glyphicon glyphicon-certificate" ></span> ，欢迎您</a></li>
                 <li><a href="Home.html"><span class="glyphicon glyphicon-share-alt"></span> 退出</a></li>
             </ul>
         </div>
@@ -90,104 +92,16 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">创建团队</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body px-3 px-lg-5">
-                        <form>
-                            <table class="table table-borderless align-middle">
-                                <tr>
-                                    <td class="ch fs-5">活 动 名 称</td>
-                                    <td><input class="form-control" id="name"
-                                               type="text" placeholder="请输入活动名称"></td>
-                                </tr>
-                                <tr>
-                                    <td class="ch fs-5">活 动 时 间</td>
-                                    <td><input class="form-control" id="date"
-                                               type="text" placeholder="请输入活动时间"></td>
-                                </tr>
-                                <tr>
-                                    <td class="ch fs-5">时 长</td>
-                                    <td><input class="form-control" id="span"
-                                               type="text" placeholder="请输入活动时长"></td>
-                                </tr>
-                                <tr>
-                                    <td class="ch fs-5">活 动 介 绍</td>
-                                    <td><input class="form-control" id="introduction"
-                                               type="text" placeholder="请输入活动内容"></td>
-                                </tr>
-                                <tr>
-                                    <td class="ch fs-5">活 动 费 用</td>
-                                    <td><input class="form-control" id="fee"
-                                               type="text" placeholder="请输入活动费用"></td>
-                                </tr>
-                                <tr>
-                                    <td class="ch fs-5">团 长</td>
-                                    <td><input class="form-control" id="leader"
-                                               type="text" placeholder="请输入团长"></td>
-                                </tr>
-                                <tr>
-                                    <td class="ch fs-5">团 费</td>
-                                    <td><input class="form-control" id="tfee"
-                                               type="text" placeholder="请输入团费"></td>
-                                </tr>
-                            </table>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary button"
-                                data-bs-dismiss="modal">关闭
-                        </button>
-                        <button type="button" class="btn btn-primary button"
-                                onclick="doAdd()">创建
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <script>
-        function doAdd() {
-            var name = $("#name");
-            var date = $("#date");
-            var span = $("#span");
-            var fee = $("#fee");
-            var introduction = $("#introduction");
-            var leader = $("#leader");
-            var tfee = $("#tfee");
-
-            var da = {
-                "name": name.val(),
-                "date": date.val(),
-                "span": span.val(),
-                "fee": fee.val(),
-                "introduction" : introduction.val(),
-                "leader": leader.val(),
-                "tfee": tfee.val()
-            };
-
-            //发送ajax请求
-            axios.post("/activities",da).then((res)=>{
-                //如果操作成功，关闭弹层，显示数据
-                if(res.data.code == 20011){
-                    layer.msg("添加成功！", {time: 1000, icon: 6, shift: 6});
-                    $('#exampleModal').modal('hide');
-                }else if(res.data.code == 20010){
-                    layer.msg("添加失败！", {time: 1000, icon: 5, shift: 6});
-                }else{
-                    layer.msg(res.data.msg, {time: 1000, icon: 5, shift: 6});
-                }
-            }).finally(()=>{
-                $('#tb_departments').bootstrapTable('refresh');
-            });
-        }
-    </script>
 </body>
+<script type="text/javascript">
+    var url = decodeURI(location.href);
+    var num = url.indexOf("?");
+    var leaderN = url.substr(num+1);
+    $("#leaderN").html(leaderN);
+    //document.write(leaderN);
+    function doL(){
+        window.location.href = "Loginin.html?" + leaderN;
+    }
+</script>
 </html>

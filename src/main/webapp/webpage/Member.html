@@ -96,6 +96,7 @@
                     </button>
                 </div>
             </div>
+            <p id="name"></p>
 
             <!-- bootstrap table自动渲染区域-->
             <table id="tb_departments" data-show-print="true"></table>
@@ -183,6 +184,9 @@
 </body>
 <script>
     function doApply() {
+        //var url = location.href;
+        //var num = url.indexOf("?");
+        //var str = url.substr(num+1);
         var name = $("#apply_name");
         var leader = $("#apply_leader");
         var fee = $("#apply_fee");

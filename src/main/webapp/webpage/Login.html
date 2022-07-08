@@ -169,8 +169,8 @@
             if (res.data.code == 20051) {
                 //展示弹层，加载数据
                 layer.msg("登录成功！", {time: 1000, icon: 6, shift: 6});
-                window.location.href = 'Member.html';
-                //window.location.href = 'Member.html?' + $(#username).val() + '';
+                //window.location.href = 'Member.html';
+                window.location.href = "Member.html?" + $("#username").val();
             } else {
                 layer.msg(msg, {time: 1000, icon: 5, shift: 6});
                 password.val("");

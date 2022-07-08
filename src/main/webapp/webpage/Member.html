@@ -96,7 +96,6 @@
                     </button>
                 </div>
             </div>
-            <p id="name"></p>
 
             <!-- bootstrap table自动渲染区域-->
             <table id="tb_departments" data-show-print="true"></table>
@@ -156,11 +155,6 @@
                                         <td><input class="form-control" id="apply_tfee"
                                                    type="text"></td>
                                     </tr>
-                                    <tr>
-                                        <td class="ch fs-5">申 请 者</td>
-                                        <td><input class="form-control" id="apply_people"
-                                                   type="text"></td>
-                                    </tr>
                                 </table>
                             </form>
                         </div>
@@ -176,7 +170,6 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-
         </article>
     </div>
 </div>
@@ -184,29 +177,20 @@
 </body>
 <script>
     function doApply() {
-        //var url = location.href;
-        //var num = url.indexOf("?");
-        //var str = url.substr(num+1);
+        var url = decodeURI(location.href);
+        var num = url.indexOf("?");
+        var people = url.substr(num+1);
         var name = $("#apply_name");
         var leader = $("#apply_leader");
         var fee = $("#apply_fee");
         var tfee = $("#apply_tfee");
-        var people = $("#apply_people");
         var da = {
             "name": name.val(),
             "leader": leader.val(),
             "fee": fee.val(),
             "tfee": tfee.val(),
-            "people": people.val(),
+            "people": people
         };
-
-        if($.trim(people.val()) == ""){
-            layer.msg("请填写申请人", {time:1000, icon:5, shift:6}, function () {
-                people.val("");
-                people.focus();
-            });
-            return false;
-        }
 
         //发送ajax请求
         axios.post("/joiners",da).then((res)=>{

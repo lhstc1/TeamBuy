@@ -92,7 +92,7 @@
             <div id="toolbar" class="btn-group">
                 <div>
                     <button class="btn btn-secondary btnstyle"
-                            type="button" onclick="window.location.href='Login.html'">退出登录
+                            type="button" onclick="window.location.href='Home.html'">退出登录
                     </button>
                 </div>
             </div>
@@ -195,6 +195,14 @@
             "tfee": tfee.val(),
             "people": people.val(),
         };
+
+        if($.trim(people.val()) == ""){
+            layer.msg("请填写申请人", {time:1000, icon:5, shift:6}, function () {
+                people.val("");
+                people.focus();
+            });
+            return false;
+        }
 
         //发送ajax请求
         axios.post("/joiners",da).then((res)=>{

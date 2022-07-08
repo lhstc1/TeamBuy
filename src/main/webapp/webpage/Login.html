@@ -110,13 +110,13 @@
 
 <script>
     function doLeader() {
-        var username = $("#username");
+        var leadername = $("#username");
         var password = $("#password");
         var da = {
-            "username": username.val(),
+            "leadername": leadername.val(),
             "password": password.val()
         }
-        axios.post("/users/getByUserName", da).then((res) => {
+        axios.post("/leader/getByLeaderName", da).then((res) => {
             var msg = res.data.msg;
             if (res.data.code == 20051) {
                 //展示弹层，加载数据
@@ -125,7 +125,7 @@
             } else {
                 layer.msg(msg, {time: 1000, icon: 5, shift: 6});
                 password.val("");
-                username.focus();
+                leadername.focus();
             }
         });
     }

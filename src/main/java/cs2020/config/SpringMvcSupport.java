@@ -6,11 +6,15 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import cs2020.controller.interceptor.ProjectInterceptor;
+import cs2020.controller.interceptor.ProjectInterceptor2;
 
 @Configuration
 public class SpringMvcSupport extends WebMvcConfigurationSupport {
     @Autowired
     private ProjectInterceptor projectInterceptor;
+
+    @Autowired
+    private ProjectInterceptor2 projectInterceptor2;
 
     //设置静态资源访问过滤，当前类需要设置为配置类，并被扫描加载
     @Override
@@ -22,7 +26,7 @@ public class SpringMvcSupport extends WebMvcConfigurationSupport {
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(projectInterceptor).addPathPatterns("/webpage/Loginin.html");
         registry.addInterceptor(projectInterceptor).addPathPatterns("/webpage/Member.html");
+        registry.addInterceptor(projectInterceptor2).addPathPatterns("/webpage/Loginin.html");
     }
 }

@@ -1,5 +1,6 @@
 cs2020\controller\ActivityController.class
 cs2020\controller\Code.class
+cs2020\service\LeaderService.class
 cs2020\controller\Result.class
 cs2020\service\ActivityService.class
 cs2020\config\SpringConfig.class
@@ -9,6 +10,7 @@ cs2020\config\SpringMvcSupport.class
 cs2020\config\ServletContainersInitConfig.class
 cs2020\config\SpringMvcConfig.class
 cs2020\entity\Joiner.class
+cs2020\service\impl\LeaderServiceImpl.class
 cs2020\service\impl\ActivityServiceImpl.class
 cs2020\controller\interceptor\ProjectInterceptor.class
 cs2020\dao\UserDao.class
@@ -18,7 +20,11 @@ cs2020\entity\Activity.class
 cs2020\service\JoinerService.class
 cs2020\dao\JoinerDao.class
 cs2020\service\impl\JoinerServiceImpl.class
+cs2020\dao\LeaderDao.class
+cs2020\controller\LeaderController.class
 cs2020\entity\User.class
 cs2020\service\impl\UserServiceImpl.class
 cs2020\dao\ActivityDao.class
+cs2020\entity\Leader.class
+cs2020\controller\interceptor\ProjectInterceptor2.class
 cs2020\config\JdbcConfig.class

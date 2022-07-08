@@ -90,7 +90,7 @@
                             type="button" onclick="window.location.href='TeamActivity.html'">团队活动
                     </button>
                     <button class="btn btn-secondary button"
-                            type="button" onclick="window.location.href='Login.html'">退出登录
+                            type="button" onclick="window.location.href='AdminHome.html'">返回主页
                     </button>
                 </div>
             </div>
@@ -289,6 +289,56 @@
             "leader": leader.val(),
             "tfee": tfee.val()
         };
+
+        if($.trim(name.val()) == ""){
+            layer.msg("请填写完整信息", {time:1000, icon:5, shift:6}, function () {
+                name.val("");
+                name.focus();
+            });
+            return false;
+        }
+        if($.trim(date.val()) == ""){
+            layer.msg("请填写完整信息", {time:1000, icon:5, shift:6}, function () {
+                date.val("");
+                date.focus();
+            });
+            return false;
+        }
+        if($.trim(span.val()) == ""){
+            layer.msg("请填写完整信息", {time:1000, icon:5, shift:6}, function () {
+                span.val("");
+                span.focus();
+            });
+            return false;
+        }
+        if($.trim(fee.val()) == ""){
+            layer.msg("请填写完整信息", {time:1000, icon:5, shift:6}, function () {
+                fee.val("");
+                fee.focus();
+            });
+            return false;
+        }
+        if($.trim(introduction.val()) == ""){
+            layer.msg("请填写完整信息", {time:1000, icon:5, shift:6}, function () {
+                introduction.val("");
+                introduction.focus();
+            });
+            return false;
+        }
+        if($.trim(leader.val()) == ""){
+            layer.msg("请填写完整信息", {time:1000, icon:5, shift:6}, function () {
+                leader.val("");
+                leader.focus();
+            });
+            return false;
+        }
+        if($.trim(tfee.val()) == ""){
+            layer.msg("请填写完整信息", {time:1000, icon:5, shift:6}, function () {
+                tfee.val("");
+                tfee.focus();
+            });
+            return false;
+        }
 
         //发送ajax请求
         axios.post("/activities",da).then((res)=>{
